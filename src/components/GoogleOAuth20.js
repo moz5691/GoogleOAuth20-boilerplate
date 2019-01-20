@@ -5,7 +5,7 @@ class GoogleOAuth20 extends Component {
 
   // isSignedIn is to show login status
 
-  state = { isSignedIn: null }
+  state = { isSignedIn: null, currentUser : null}
 
   componentDidMount() {
     window.gapi.load('client:auth2', async ()=>{
@@ -13,7 +13,7 @@ class GoogleOAuth20 extends Component {
           // substitute your own clientId here.
           clientId: clientId,
           // scope can be profile, email, etc..
-          scope: 'email'});
+          scope: 'profile'});
         this.auth = window.gapi.auth2.getAuthInstance();
         // disconnect() prevents auto sign-in. auto sign-in is still useful if only one google account is used.
         this.auth.disconnect();
@@ -27,14 +27,19 @@ class GoogleOAuth20 extends Component {
   }
 
   authChange = () => {
-    this.setState({isSignedIn: this.auth.isSignedIn.get()})
+    const isSignedIn = this.auth.isSignedIn.get()
+    this.setState({isSignedIn } )
+
+    isSignedIn ? this.setState({currentUser : this.auth.currentUser.get().getId()})
+               : this.setState({currentUser:""});
   }
 
   // sign in/out method
   // window.gapi.auth2.getAuthInstance().signIn();
   // window.gapi.auth2.getAuthInstance().signOut();
 
-  signIn = () => {
+
+  signIn =  () => {
     this.auth.signIn();
   }
 
@@ -57,6 +62,11 @@ class GoogleOAuth20 extends Component {
     return (
       <div>
         <p>SignIn status </p>
+        <p></p>
+        Current User: {this.state.currentUser}
+        <br/>
+        Sign In : {this.state.isSignedIn ? "true": "false"}
+        <br/>
         {this.signInStatus()}
       </div>
     );

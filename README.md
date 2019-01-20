@@ -47,7 +47,8 @@ Then, click on “save” at the bottom of the screen (“save” button isn’t
 ![alt text](./readme_screenshots/6.png)
 
 __Step 7__: 
-As mentioned in Step 5,  you come back to "Credentials". Click on “Credentials” and Click on "Create Credentials” button and Choose “OAuth client ID”.   
+As mentioned in Step 5,  you come back to "Credentials". 
+Click on “Credentials” and Click on "Create Credentials” button and Choose “OAuth client ID”.   
 ![alt text](./readme_screenshots/7.png)
 
 __Step 8__:
@@ -59,7 +60,9 @@ Click on “Create” button.  When you deploy your product, you need to change 
 
 __Step 9__:
 Finally, we have finished up the setting.   OAuth client is finally set up.   What we need is “client ID” only as we just want client side authentication.   
-Copy “Client ID” and save it for now.  We need it for OAuth lib code.  "client secret" is additionally needed for server side authentication.
+Copy “Client ID” and save it for now.  
+We need it for OAuth lib code.  
+"client secret" is additionally needed for server side authentication.
 ![alt text](./readme_screenshots/9.png)
 
 __Step 10__:
@@ -115,6 +118,18 @@ For example, you can use the following on console to login/logout after initiali
 
 gapi.auth2.getAuthInstance().signIn();
 gapi.auth2.getAuthInstance().signOut();
+
+
+#### If you want to retrive user info, it is pretty simple to do it.  
+
+__gapi.auth2.getAuthInstance().currentUser.get()__ : this shows the current user info.
+
+__gapi.auth2.getAuthInstance().currentUser.get().getId()__ : this method shows the userId. 
+
+
+
+![alt text](readme_screenshots/11-1.png)
+
 
 
 You can find more detail in GoogleOAuth20.js file.  
