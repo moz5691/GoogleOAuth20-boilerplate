@@ -1,68 +1,120 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Google OAuth20 Client side 
 
-## Available Scripts
+#### This is to explain to how to make Google OAuth20 works in React Client side:
 
-In the project directory, you can run:
+#### This page is mostly to explain how to setup OAuth20 in Google+ API environment. 
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Reference: https://developers.google.com/api-client-library/javascript/samples/samples#authorizing-and-making-authorized-requests
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+Step 1: Google console is changed frequently.  You may have to find a different way or different screen.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Login to the following with your Google Account: 
+https://console.developers.google.com
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Find Google+ API
+![alt text](./readme_screenshots/1.png)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Step 2: Now you can see Google+ API. Click on Manage button and can find the following screen.  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![alt text](./readme_screenshots/2.png)
 
-### `npm run eject`
+Step 3: 
+On the following screen, click on project button (my screen shows “youtube-video” next to Google APIs logo.  
+If you don’t have any new project, create a new one here.   
+Click on “NEW PROJECT” button to create a new one. 
+![alt text](./readme_screenshots/3.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Step 4: 
+After clicking on “NEW PROJECT”, you can choose a name for a new project.   
+I have named my new project “Video-Stream”.
+![alt text](./readme_screenshots/4.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Step 5:
+It may take a few minutes to create a new project by Google.   
+Click on “Google APIs” button on the top left corner and make sure the new project created is chosen in case you have multiple projects   
+On the following screen, “Video-Stream” is the project just created.    
+At this point, even though you click on “Credential” from the menu on the left, you cannot create credential at this point yet.
+You need to choose “OAuth consent screen” first here which is the next to credentials.    
+You need come back to this screen.  
+![alt text](./readme_screenshots/5.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Step 6: 
+All you need to enter is “Application name”.   I entered “Video-Stream” again here.   
+Then, click on “save” at the bottom of the screen (“save” button isn’t shown on the following). 
+![alt text](./readme_screenshots/6.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Step 7: 
+Then, you come back to "Credentials". Click on “Credentials” and Clicking on "Create Credentials” button and Choose “OAuth client ID”.   
+![alt text](./readme_screenshots/7.png)
 
-## Learn More
+Step 8:
+Now we need to choose type of application.  Choose “Web application” and enter Name (“Video-Stream Client” is what I entered here).   Lastly, it is important to set Restrictions.   
+Since this is for development, enter http://localhost:3000 for React dev server.   
+Click on “Create” button.  When you deploy your product, you need to change it from "localhost" to your own "url".
+![alt text](./readme_screenshots/8.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Step 9:
+Finally, we have finished up the setting.   OAuth client is finally set up.   What we need is “client ID” only as we just want client side authentication.   
+Copy “Client ID” and save it for now.  We need it for OAuth lib code.  "client secret" is only needed for server side authentication but we will do only client side authenticaiton.
+![alt text](./readme_screenshots/9.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Step 10:
+The following is the final screen you should see.  
+You can always revisit to get client ID and edit the info.   
+![alt text](./readme_screenshots/10.png)
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## OAuth20 Lib code,
+#### [IMPORTANT] Note that you must add the following script to index.html to access "gapi".
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```javascript 
+/public/index.html, 
 
-### Making a Progressive Web App
+Add the following,
+  
+<script src="https://apis.google.com/js/api.js"></script>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Then, it should look like below. 
 
-### Advanced Configuration
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+    <script src="https://apis.google.com/js/api.js"></script>
 
-### Deployment
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+    <title>React App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
 
-### `npm run build` fails to minify
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The following link is the best resource to show how to create OAuth20 lib in Javascript.
+
+https://developers.google.com/api-client-library/javascript/samples/samples#authorizing-and-making-authorized-requests
+
+Basically, we can access gapi (Google API) in global scope.   
+
+For example, you can use the following on console to login/logout after initializing OAuth20.
+
+gapi.auth2.getAuthInstance().signIn();
+gapi.auth2.getAuthInstance().signOut();
+
+
+You can find more detail in GoogleOAuth20.js file.  
+
