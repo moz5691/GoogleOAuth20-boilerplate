@@ -1,6 +1,6 @@
 ## Google OAuth20 Client side 
 
-#### This is to explain to how to make Google OAuth20 works in React Client side:
+####  This page it to help make Google OAuth20 implementation in React Client side:
 
 #### This page is mostly to explain how to setup OAuth20 in Google+ API environment. 
 
@@ -8,60 +8,61 @@
 Reference: https://developers.google.com/api-client-library/javascript/samples/samples#authorizing-and-making-authorized-requests
 
 
-Step 1: Google console is changed frequently.  You may have to find a different way or different screen.
+__Step 1__: Google console is changed frequently.  You may find a different way or different screens.
 
-Login to the following with your Google Account: 
-https://console.developers.google.com
+First, login to the following with your Google Account: 
+__https://console.developers.google.com__
 
 
-Find Google+ API
+And find Google+ API,  OAuth20 is located in Google+ API. If you search OAuth20, nothing is shown.
 ![alt text](./readme_screenshots/1.png)
 
-Step 2: Now you can see Google+ API. Click on Manage button and can find the following screen.  
+__Step 2__: You can see Google+ API. Click on Manage button. You can find the following screen.  
 
 ![alt text](./readme_screenshots/2.png)
 
-Step 3: 
+__Step 3__: 
 On the following screen, click on project button (my screen shows “youtube-video” next to Google APIs logo.  
 If you don’t have any new project, create a new one here.   
 Click on “NEW PROJECT” button to create a new one. 
 ![alt text](./readme_screenshots/3.png)
 
-Step 4: 
+__Step 4__: 
 After clicking on “NEW PROJECT”, you can choose a name for a new project.   
 I have named my new project “Video-Stream”.
 ![alt text](./readme_screenshots/4.png)
 
-Step 5:
-It may take a few minutes to create a new project by Google.   
+__Step 5__:
+It may take a few seconds to minutes to create a new project by Google.   
 Click on “Google APIs” button on the top left corner and make sure the new project created is chosen in case you have multiple projects   
 On the following screen, “Video-Stream” is the project just created.    
 At this point, even though you click on “Credential” from the menu on the left, you cannot create credential at this point yet.
 You need to choose “OAuth consent screen” first here which is the next to credentials.    
-You need come back to this screen.  
+You need come back to this screen after finishing up "OAuth Consent screen".  
 ![alt text](./readme_screenshots/5.png)
 
-Step 6: 
+__Step 6__: 
 All you need to enter is “Application name”.   I entered “Video-Stream” again here.   
-Then, click on “save” at the bottom of the screen (“save” button isn’t shown on the following). 
+Then, click on “save” at the bottom of the screen (“save” button isn’t shown on the following, sorry). 
 ![alt text](./readme_screenshots/6.png)
 
-Step 7: 
-Then, you come back to "Credentials". Click on “Credentials” and Clicking on "Create Credentials” button and Choose “OAuth client ID”.   
+__Step 7__: 
+As mentioned in Step 5,  you come back to "Credentials". Click on “Credentials” and Click on "Create Credentials” button and Choose “OAuth client ID”.   
 ![alt text](./readme_screenshots/7.png)
 
-Step 8:
-Now we need to choose type of application.  Choose “Web application” and enter Name (“Video-Stream Client” is what I entered here).   Lastly, it is important to set Restrictions.   
+__Step 8__:
+We need to choose type of application here.  Choose “Web application” and enter Name (“Video-Stream Client” is what I entered here).   
+It is important to set Restrictions.   
 Since this is for development, enter http://localhost:3000 for React dev server.   
-Click on “Create” button.  When you deploy your product, you need to change it from "localhost" to your own "url".
+Click on “Create” button.  When you deploy your product, you need to change it from "http://localhost:3000" to your own "https://yoururl.whatever".
 ![alt text](./readme_screenshots/8.png)
 
-Step 9:
+__Step 9__:
 Finally, we have finished up the setting.   OAuth client is finally set up.   What we need is “client ID” only as we just want client side authentication.   
-Copy “Client ID” and save it for now.  We need it for OAuth lib code.  "client secret" is only needed for server side authentication but we will do only client side authenticaiton.
+Copy “Client ID” and save it for now.  We need it for OAuth lib code.  "client secret" is additionally needed for server side authentication.
 ![alt text](./readme_screenshots/9.png)
 
-Step 10:
+__Step 10__:
 The following is the final screen you should see.  
 You can always revisit to get client ID and edit the info.   
 ![alt text](./readme_screenshots/10.png)
